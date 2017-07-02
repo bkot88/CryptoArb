@@ -142,9 +142,9 @@ class Bitfinex:
 			elif any(isinstance(i, list) for i in msg) is False:
 				# print [(i,j) for i, j in zip(self.ticker_keys, msg)]
 				doc = self.make_doc(msg)
-				GLOBAL_DICT[doc['ticker']]['bitfinex'] = doc
+				GLOBAL_DICT[doc['ticker']]['bitfiniex'] = {'ask':doc['ask'],'bid':doc['bid']}
 				# print doc 
-				self.db.async_save(doc)
+				# self.db.async_save(doc)
 
 
 	def make_doc(self, msg):
