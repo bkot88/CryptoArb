@@ -10,9 +10,9 @@ def main():
     okcoin.add_tickers(['btc'])
     okcoin.run_forever()
 
-    # bitfinex = Bitfinex(deploy=True)
-    # bitfinex.add_ticker(['btc'])
-    # bitfinex.run_forever()
+    bitfinex = Bitfinex(deploy=True)
+    bitfinex.add_ticker(['btc'])
+    bitfinex.run_forever()
 
     t = Thread(target=print_global_dict,args=())
     t.daemon = True

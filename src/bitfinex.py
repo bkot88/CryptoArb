@@ -70,6 +70,7 @@ class Bitfinex:
         # non-blocking call to run_forever
 		if delay is not None: time.sleep(delay)
 		self.t = Thread(target=self.ws.run_forever,args=())
+		self.t.daemon = True
 		self.t.start()
 
 	def on_message(self, ws, message):
