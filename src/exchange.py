@@ -42,8 +42,8 @@ class Okcoin:
         else:
             doc = self.make_doc(msg)
             # add to global memory
-            GLOBAL_DICT[doc['ticker']]['okcoin'] = doc
-            self.db.async_save(doc)
+            GLOBAL_DICT[doc['ticker']]['okcoin'] = {'ask':doc['ask'],'bid':doc['bid']}
+            # self.db.async_save(doc)
 
     def on_error(self, ws, error):
         print error
