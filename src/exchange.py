@@ -13,7 +13,7 @@ class Okcoin:
     def __init__(self, deploy=False):
 
         # For RelaxedCouch, put in database name, username, password 
-        self.db = RelaxedCouch('okcoin','admin','admin')
+        self.db = RelaxedCouch('okcoin','admin','admin','10.0.0.119')
         self.deploy = deploy
         self.requests = []
 

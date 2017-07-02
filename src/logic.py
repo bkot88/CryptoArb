@@ -20,6 +20,7 @@ class Logic:
 
 		if delay is not None: time.sleep(delay)
 		self.t = Thread(target=self.run,args=())
+		self.t.daemon = True
 		self.t.start()
 
 
@@ -32,34 +33,37 @@ class Logic:
 
 			for ticker in GLOBAL_DICT.keys():
 
-				get_prices(ticker)
+				self.get_prices(ticker)
 
-				if max_price - min_price > threshold:
-					trade(ticker, min_exchange, max_exchange)
+
+				if self.max_price - self.min_price > self.threshold:
+					self.trade(ticker, self.min_exchange, self.max_exchange)
 
 
 
 	# updates min and max prices for a ticker
-	def get_prices(ticker):
+	def get_prices(self, ticker):
 
-		max_price = 0
-		min_price = 99999
-		min_exchange = "No min exchange"
-		max_exchange = "No max exchange"
+		self.max_price = 0
+		self.min_price = 99999
+		self.min_exchange = "No min exchange"
+		self.max_exchange = "No max exchange"
 
 		for exchange in GLOBAL_DICT[ticker].keys():
 
 			ask = GLOBAL_DICT[ticker][exchange]["ask"]
 			bid = GLOBAL_DICT[ticker][exchange]["bid"]
 
-			if bid > max_price:
-				max_price = bid
-				max_exchange = exchange
-			if ask < min_price:
-				min_price = ask
-				min_exchange = exchange
+			if bid > self.max_price:
+				self.max_price = bid
+				self.max_exchange = exchange
+			if ask < self.min_price:
+				self.min_price = ask
+				self.min_exchange = exchange
 
 
 	#places a trade for a given ticker at the buy and short exchanges
-	def trade(ticker, buy,short):
+	def trade(self,ticker, buy,short):
 		print "Buying "+buy+", shorting "+short
+		print "max price = "+str(self.max_price)
+		print "min price = "+str(self.min_price)

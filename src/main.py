@@ -3,6 +3,7 @@ from exchange import Okcoin
 from bitfinex import Bitfinex
 from exchange import GLOBAL_DICT
 from threading import Thread
+from logic import Logic
 import time
 
 def main():
@@ -10,13 +11,16 @@ def main():
     okcoin.add_tickers(['btc'])
     okcoin.run_forever()
 
-    # bitfinex = Bitfinex(deploy=True)
-    # bitfinex.add_ticker(['btc'])
-    # bitfinex.run_forever()
+    bitfinex = Bitfinex(deploy=True)
+    bitfinex.add_ticker(['btc'])
+    bitfinex.run_forever()
 
     t = Thread(target=print_global_dict,args=())
     t.daemon = True
     t.start()
+
+    logic = Logic(deploy=True)
+    logic.run_forever()
 
     try:
         while True: time.sleep(2)
