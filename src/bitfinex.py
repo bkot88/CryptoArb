@@ -106,7 +106,7 @@ class Bitfinex:
     	process the message, either print it 
     	or create a doc and save to couchdb
 		'''
-		print msg 
+		#print msg 
 		msg = json.loads(msg)
 		
 		if isinstance(msg, dict):

@@ -39,6 +39,8 @@ class Logic:
 				if self.max_price - self.min_price > self.threshold:
 					self.trade(ticker, self.min_exchange, self.max_exchange)
 
+			time.sleep(1)
+
 
 
 	# updates min and max prices for a ticker
